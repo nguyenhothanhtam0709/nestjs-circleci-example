@@ -3,36 +3,32 @@ version: 2.1
 orbs:
   docker: circleci/docker@2.1.4
 
-# jobs:
-#   build-and-push:
-#     environment:
-#       DOCKER_IMAGE: myapp
-#       DOCKER_TAG: latest
-#     executor: docker/docker
-#     steps:
-#       - setup_remote_docker
-#       - checkout
-#       - docker/check:
-#           docker-username: DOCKER_USER
-#           docker-password: DOCKER_PASSWORD
-#       - docker/build:
-#           image: $DOCKER_USER/$DOCKER_IMAGE
-#           tag: $DOCKER_TAG
+jobs:
+  build-and-push:
+    environment:
+      DOCKER_IMAGE: nestjs-circleci
+      DOCKER_TAG: latest
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check:
+          docker-username: DOCKER_USER
+          docker-password: DOCKER_PASSWORD
+      - docker/build:
+          image: $DOCKER_USER/$DOCKER_IMAGE
+          tag: $DOCKER_TAG
 
-#       - docker/push:
-#           digest-path: /tmp/digest.txt
-#           image: $DOCKER_USER/$DOCKER_IMAGE
-#           tag: $DOCKER_TAG
-#       - run:
-#           command: |
-#             echo "Digest is: $(</tmp/digest.txt)"
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: $DOCKER_USER/$DOCKER_IMAGE
+          tag: $DOCKER_TAG
+      - run:
+          command: |
+            echo "Digest is: $(</tmp/digest.txt)"
 
 workflows:
   build-and-push:
     jobs:
-      - build:
-          steps: 
-            - run:
-              command: |
-                echo hello
+      - build-and-push
 
