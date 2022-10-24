@@ -41,5 +41,5 @@ workflows:
       - build-and-push
 
       - deploy:
-        requires:
+         requires:
           - build-and-push
