@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "nestjs-circleci",
+      "script": "yarn",
+      "args": "start:prod",
+      "cwd": "."
+    }
+  ]
+}
