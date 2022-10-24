@@ -3,4 +3,4 @@ services:
   nestjs-circleci:
     image: nguyenhothanhtam123/nestjs-circleci:latest
     ports:
-      - "3000:3000"
+      - "80:3000"
