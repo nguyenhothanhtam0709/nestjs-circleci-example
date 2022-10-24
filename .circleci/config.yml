@@ -39,7 +39,11 @@ workflows:
   commit:
     jobs:
       - build-and-push
+          filters:
+            branches:
+              only:
+                - main
 
       - deploy:
-         requires:
+          requires:
           - build-and-push
